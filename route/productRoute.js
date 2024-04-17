@@ -1,56 +1,28 @@
 const express = require('express');
+
+const {getAllProducts, getSingleProduct, createSingleProduct, updateSingleProduct, deleteSingleProduct} = require('../controllers/productController');
 const router = express.Router();
 
 
 // gets all products
-router.get('/products', (req, res) => {
-  res.status(200)
-  res.json([
-    {
-      productName: 'iphone 15',
-      productPrice: '$1300'
-    },
-    {
-        productName: 'iphone 14',
-        productPrice: '$1200'
-    }
-  ])
-});
+// router.get('/products', getAllProducts);
 
-// get a single product
-router.get('/products/:id', (req, res) => {
-    res.status(200)
-    res.json({
-      productName: 'iphone 15',
-      productPrice: '$1300'
-    })
-})
+// // get a single product
+// router.get('/products/:id', getSingleProduct)
 
-// create a product
-router.post('/products/', (req, res) => {
-    res.status(200)
-    res.json({
-      message: "product added successfully"
-    })
-})
+// // create a product
+// router.post('/products/', createSingleProduct)
 
-// Update a product
+// // Update a product
 
-router.put('/products/:id', (req, res) => {
-    res.status(200)
-    res.json({
-      message: "product updated successfully"
-    })
-})
+// router.put('/products/:id', updateSingleProduct)
 
-// Delete a product
+// // Delete a product
 
-router.delete('/products/:id', (req, res) => {
-    res.status(200)
-    res.json({
-      message: "product deleted successfully"
-    })
-})
+// router.delete('/products/:id', deleteSingleProduct)
 
+router.route('/products').get(getAllProducts).post(createSingleProduct)
+
+router.route('/products/:id').get(getSingleProduct).put(updateSingleProduct).delete(deleteSingleProduct)
 
 module.exports = router
